@@ -1,4 +1,9 @@
+var configMongoose = require('./configMongoose');
+var sessionRoutes = require('./routesSession');
+const Article = configMongoose.Article;
+
 const PublishingAppRoutes = [
+  ...sessionRoutes,
   {
     route: 'articles.length',
     get: () => {
