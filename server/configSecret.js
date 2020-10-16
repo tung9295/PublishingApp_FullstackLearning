@@ -1,4 +1,4 @@
-export default {
+module.exports = {
 'secret': process.env.JWT_SECRET || 'devSecretGoesHere' 
 }
 
