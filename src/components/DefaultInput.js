@@ -10,9 +10,7 @@ class DefaultInput extends React.Component {
   }
 
   changeValue(e) {
-    this.setState({currentText: e.target.value}, () => {
-      console.log(this.state);
-    })
+    this.setState({currentText: e.target.value});
     this.props.setValue(e.target.value);
     this.props.onChange(e);
   }

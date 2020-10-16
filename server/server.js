@@ -8,7 +8,8 @@ app.server = http.createServer(app);
 var falcor = require('falcor');
 var falcorExpress = require('falcor-express');
 var falcorRouter = require('falcor-router');
-var routes = require('./routes.js')
+var routes = require('./routes.js');
+const { default: model } = require('../src/falcorModel.js');
 
 //CORS - 3rd party middleware
 app.use(cors());

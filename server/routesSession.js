@@ -9,17 +9,19 @@ module.exports = [
     call: (callPath, args) => {
       const { username, password } = args[0];
       const saltedPassword = password + 'pubApp';
+      console.log(saltedPassword);
       // pubApp is salt string
       const saltedPassHash = crypto
-      .createHash('sha256')
-      .update(saltedPassword)
-      .digest('hex');
+        .createHash('sha256')
+        .update(saltedPassword)
+        .digest('hex');
       const userStatementQuery = {
         $and: [
           {"username": username},
           {"password": saltedPassHash}
         ]
       }
+      
       return User.find(userStatementQuery, function(err, user) {
         if (err) throw err;
       }).then((result) => {

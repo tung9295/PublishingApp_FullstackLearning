@@ -37364,37 +37364,35 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	var falcor = __webpack_require__(606);
+	var FalcorDataSource = __webpack_require__(746);
+	// import falcor from 'falcor';
+	// import FalcorDataSource from 'falcor-http-datasource';
+
+	// let cache = {
+	//   articles: [
+	//     {
+	//       id: 987654,
+	//       articleTitle: 'Lorem ipsum - article one',
+	//       articleContent: 'Here goes the content of the article. (from falcorModel)'
+	//     },
+	//     {
+	//       id: 123456,
+	//       articleTitle: 'Lorem ipsum - article two from backend',
+	//       articleContent: 'Sky is the limit, the content goes here. (from falcorModel)'
+	//     }
+	//   ]
+	// };
+
+	// const model = new falcor.Model({
+	//   'cache': cache
+	// });
+
+	var model = new falcor.Model({
+	  source: new FalcorDataSource('/model.json')
 	});
 
-	var _falcor = __webpack_require__(606);
-
-	var _falcor2 = _interopRequireDefault(_falcor);
-
-	var _falcorHttpDatasource = __webpack_require__(746);
-
-	var _falcorHttpDatasource2 = _interopRequireDefault(_falcorHttpDatasource);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var cache = {
-	  articles: [{
-	    id: 987654,
-	    articleTitle: 'Lorem ipsum - article one',
-	    articleContent: 'Here goes the content of the article. (from falcorModel)'
-	  }, {
-	    id: 123456,
-	    articleTitle: 'Lorem ipsum - article two from backend',
-	    articleContent: 'Sky is the limit, the content goes here. (from falcorModel)'
-	  }]
-	};
-
-	var model = new _falcor2.default.Model({
-	  'cache': cache
-	});
-
-	exports.default = model;
+	module.exports = model;
 
 /***/ },
 /* 606 */
@@ -46118,7 +46116,7 @@
 
 	    _this.login = _this.login.bind(_this);
 	    _this.state = {
-	      rerror: null
+	      error: null
 	    };
 	    return _this;
 	  }
@@ -46127,14 +46125,14 @@
 	    key: 'login',
 	    value: function () {
 	      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(credentials) {
-	        var tokenres;
+	        var tokenRes;
 	        return regeneratorRuntime.wrap(function _callee$(_context) {
 	          while (1) {
 	            switch (_context.prev = _context.next) {
 	              case 0:
 	                console.info('credentials', credentials);
 	                _context.next = 3;
-	                return _falcorModel2.default.call(['login', [credentials]]).then(function (result) {
+	                return _falcorModel2.default.call(['login'], [credentials]).then(function (result) {
 	                  return result;
 	                });
 
@@ -46143,7 +46141,7 @@
 	                return _falcorModel2.default.getValue('login.token');
 
 	              case 5:
-	                tokenres = _context.sent;
+	                tokenRes = _context.sent;
 
 	                console.info('tokenRes', tokenRes);
 	                return _context.abrupt('return');
@@ -46236,10 +46234,10 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        _formsyReact2.default.Form,
-	        null,
+	        { onSubmit: this.props.onSubmit },
 	        _react2.default.createElement(
 	          _materialUi.Paper,
-	          null,
+	          { zDepth: 1, style: { padding: 32 } },
 	          _react2.default.createElement(
 	            'h3',
 	            null,
@@ -81215,11 +81213,7 @@
 	  _createClass(DefaultInput, [{
 	    key: 'changeValue',
 	    value: function changeValue(e) {
-	      var _this2 = this;
-
-	      this.setState({ currentText: e.target.value }, function () {
-	        console.log(_this2.state);
-	      });
+	      this.setState({ currentText: e.target.value });
 	      this.props.setValue(e.target.value);
 	      this.props.onChange(e);
 	    }

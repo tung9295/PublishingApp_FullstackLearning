@@ -16,16 +16,16 @@ class LoginView extends React.Component {
     super(props);
     this.login = this.login.bind(this);
     this.state = {
-      rerror: null
+      error: null
     };
   }
 
   async login(credentials) {
     console.info('credentials', credentials);
     await falcorModel
-      .call(['login', [credentials]])
+      .call(['login'], [credentials])
       .then((result) => result);
-    const tokenres = await falcorModel.getValue('login.token');
+    const tokenRes = await falcorModel.getValue('login.token');
     console.info('tokenRes', tokenRes);
     return;
   }
