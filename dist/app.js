@@ -81452,7 +81452,7 @@
 	    key: 'register',
 	    value: function () {
 	      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(newUserModel) {
-	        var newUserId;
+	        var newUserId, errorRes;
 	        return regeneratorRuntime.wrap(function _callee$(_context) {
 	          while (1) {
 	            switch (_context.prev = _context.next) {
@@ -81471,20 +81471,24 @@
 	                newUserId = _context.sent;
 
 	                if (!(newUserId === 'INVALID')) {
-	                  _context.next = 9;
+	                  _context.next = 12;
 	                  break;
 	                }
 
-	                console.log('ERROR');
-	                // const errorRes = await falcorModel.getValue('register.error');
-	                // this.setState({ error: errorRes});
-	                return _context.abrupt('return');
+	                _context.next = 9;
+	                return _falcorModel2.default.getValue('register.error');
 
 	              case 9:
+	                errorRes = _context.sent;
+
+	                this.setState({ error: errorRes });
+	                return _context.abrupt('return');
+
+	              case 12:
 
 	                this.props.history.pushState(null, '/login');
 
-	              case 10:
+	              case 13:
 	              case 'end':
 	                return _context.stop();
 	            }
