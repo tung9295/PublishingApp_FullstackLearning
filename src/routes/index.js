@@ -6,7 +6,7 @@ import LoginView from '../views/LoginView';
 import DashboardView from '../views/DashboardView';
 import RegisterView from '../views/RegisterView';
 
-export default (
+module.exports = (
   <Route component={CoreLayout} path='/'>
     <IndexRoute component={PublishingApp} name='home' />
     <Route component={LoginView} path='login' name='login' />

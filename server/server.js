@@ -1,14 +1,42 @@
-var http = require('http');
-var express = require('express');
-var cors = require('cors');
-var bodyParse = require('body-parser');
+import http from 'http';
+import express from 'express';
+import cors from 'cors';
+import bodyParse from 'body-parser';
+import falcor from 'falcor';
+import falcorExpress from 'falcor-express';
+import falcorRouter from 'falcor-router';
+import routes from './routes.js';
+import React from 'react';
+import { createStore } from 'redux';
+import { provider } from 'react-redux';
+import { renderToStaticMarkup } from 'react-dom/server.js';
+import ReactRouter from 'react-router';
+import { RoutingContext, match } from 'react-router';
+import rootReducer from '../src/reducers';
+import reactRoutes from '../src/routes';
+import fetchServerSide from './fetchServerSide';
+
+// var http = require('http');
+// var express = require('express');
+// var cors = require('cors');
+// var bodyParse = require('body-parser');
+// var falcor = require('falcor');
+// var falcorExpress = require('falcor-express');
+// var falcorRouter = require('falcor-router');
+// var routes = require('./routes.js');
+// var React = require('react');
+// var { createStore } = require('redux');
+// var { provider } = require('react-redux');
+// var { renderToStaticMarkup } = require('react-dom/server');
+// var ReactRouter = require('react-router');
+// var { RoutingContext, match } = require('react-router');
+// var rootReducer = require('../src/reducers');
+// var reactRoutes = require('../src/routes');
+// var fetchServerSide = require('./fetchServerSide');
 
 const app = express();
 app.server = http.createServer(app);
-var falcor = require('falcor');
-var falcorExpress = require('falcor-express');
-var falcorRouter = require('falcor-router');
-var routes = require('./routes.js');
+
 const { default: model } = require('../src/falcorModel.js');
 
 //CORS - 3rd party middleware

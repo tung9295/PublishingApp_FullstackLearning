@@ -1,6 +1,7 @@
 {
   "name": "MongoDb",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "initData.js",
   "scripts": {
